@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 300px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      padding: 16px;
+    }
+
+    h1 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+
+    .subtitle {
+      font-size: 11px;
+      color: #8a8d91;
+      margin-bottom: 16px;
+    }
+
+    .section {
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #8a8d91;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .toggle-row:last-child {
+      border-bottom: none;
+    }
+
+    .toggle-label {
+      font-size: 13px;
+    }
+
+    .toggle-desc {
+      font-size: 10px;
+      color: #8a8d91;
+      margin-top: 2px;
+    }
+
+    /* Toggle switch */
+    .switch {
+      position: relative;
+      width: 40px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background: #3a3a4a;
+      border-radius: 22px;
+      transition: 0.2s;
+    }
+
+    .slider::before {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      left: 2px;
+      bottom: 2px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.2s;
+    }
+
+    input:checked + .slider {
+      background: #5b5ec1;
+    }
+
+    input:checked + .slider::before {
+      transform: translateX(18px);
+    }
+
+    .lang-display {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 12px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    .lang-box {
+      text-align: center;
+    }
+
+    .lang-code {
+      font-size: 20px;
+      font-weight: bold;
+      color: #5b5ec1;
+    }
+
+    .lang-name {
+      font-size: 10px;
+      color: #8a8d91;
+    }
+
+    .arrow {
+      font-size: 18px;
+      color: #5b5ec1;
+    }
+
+    .shortcut-info {
+      font-size: 11px;
+      color: #8a8d91;
+      background: rgba(255,255,255,0.03);
+      padding: 8px;
+      border-radius: 6px;
+      line-height: 1.5;
+    }
+
+    .shortcut-info kbd {
+      background: rgba(255,255,255,0.1);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-family: monospace;
+    }
+
+    .status-bar {
+      text-align: center;
+      padding: 6px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-top: 12px;
+    }
+
+    .status-bar.on {
+      background: rgba(46, 204, 113, 0.15);
+      color: #2ecc71;
+    }
+
+    .status-bar.off {
+      background: rgba(231, 76, 60, 0.15);
+      color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <h1>Messenger Translator</h1>
+  <p class="subtitle">Hungarian ↔ Russian</p>
+
+  <div class="lang-display">
+    <div class="lang-box">
+      <div class="lang-code">HU</div>
+      <div class="lang-name">Magyar</div>
+    </div>
+    <div class="arrow">⇄</div>
+    <div class="lang-box">
+      <div class="lang-code">RU</div>
+      <div class="lang-name">Русский</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Settings</div>
+
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">Enable translation</div>
+        <div class="toggle-desc">Master on/off switch</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="toggle-enabled">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">Auto-translate incoming</div>
+        <div class="toggle-desc">HU → RU for received messages</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="toggle-incoming">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">Auto-translate outgoing</div>
+        <div class="toggle-desc">RU → HU on Enter key</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="toggle-outgoing">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Shortcuts</div>
+    <div class="shortcut-info">
+      <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd> — Translate input text<br>
+      <kbd>RU</kbd> button — Click to translate, or toggle auto-mode
+    </div>
+  </div>
+
+  <div id="status-bar" class="status-bar on">Active</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

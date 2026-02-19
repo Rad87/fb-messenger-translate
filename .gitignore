@@ -1,0 +1,5 @@
+claude_run.bat
+claude_run.sh
+generate-icons.html
+.DS_Store
+*.log

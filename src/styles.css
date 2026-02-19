@@ -1,0 +1,123 @@
+/* ============================================
+   Messenger Translator - Inline Translation Styles
+   ============================================ */
+
+/* Translation block shown below original message */
+.mt-translation {
+  font-size: 0.85em;
+  color: #8a8d91;
+  margin-top: 4px;
+  padding: 4px 8px;
+  border-left: 2px solid #5b5ec1;
+  background: rgba(91, 94, 193, 0.05);
+  border-radius: 0 4px 4px 0;
+  line-height: 1.4;
+  max-width: 100%;
+  word-wrap: break-word;
+  transition: opacity 0.2s ease;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .mt-translation {
+    color: #b0b3b8;
+    background: rgba(91, 94, 193, 0.1);
+  }
+}
+
+/* Messenger dark mode (Facebook applies class-based dark mode) */
+.__fb-dark-mode .mt-translation,
+[data-color-scheme="dark"] .mt-translation {
+  color: #b0b3b8;
+  background: rgba(91, 94, 193, 0.1);
+}
+
+/* Loading state */
+.mt-translation.mt-loading {
+  opacity: 0.5;
+  font-style: italic;
+}
+
+/* Error state */
+.mt-translation.mt-error {
+  color: #e74c3c;
+  border-left-color: #e74c3c;
+}
+
+/* Translation toggle button in the input area */
+.mt-translate-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: #5b5ec1;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 4px;
+  transition: background 0.2s ease, transform 0.1s ease;
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.mt-translate-btn:hover {
+  background: #4a4db0;
+  transform: scale(1.1);
+}
+
+.mt-translate-btn.mt-active {
+  background: #2ecc71;
+}
+
+.mt-translate-btn.mt-active:hover {
+  background: #27ae60;
+}
+
+/* Status indicator */
+.mt-status {
+  position: fixed;
+  top: 8px;
+  right: 8px;
+  padding: 6px 12px;
+  border-radius: 16px;
+  background: #5b5ec1;
+  color: white;
+  font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  z-index: 99999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.mt-status.mt-visible {
+  opacity: 1;
+}
+
+/* Original text tooltip on hover */
+.mt-translation[title] {
+  cursor: help;
+}
+
+/* Notification badge on extension icon area */
+.mt-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2ecc71;
+}
+
+/* Translate input wrapper */
+.mt-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
